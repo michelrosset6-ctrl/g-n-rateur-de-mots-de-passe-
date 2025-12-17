@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Générateur de mot de passe</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+#password {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  word-break: break-all;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🔐 Générateur de mot de passe</h2>
+
+<button onclick="generatePassword()">Générer un mot de passe</button>
+
+<div id="password"></div>
+
+<script>
+function generatePassword() {
+  const special = "!@#$%^&*()_+-=";
+  const lettersNumbers = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+  let password = "";
+
+  // 15 caractères lettres/chiffres
+  for (let i = 0; i < 15; i++) {
+    password += lettersNumbers.charAt(Math.floor(Math.random() * lettersNumbers.length));
+  }
+
+  // 1 caractère spécial minimum
+  password += special.charAt(Math.floor(Math.random() * special.length));
+
+  // Mélange du mot de passe
+  password = password.split('').sort(() => 0.5 - Math.random()).join('');
+
+  document.getElementById("password").textContent = password;
+}
+</script>
+
+</body>
+</html>
